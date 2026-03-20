@@ -35,28 +35,7 @@ If the user does not specify, **ask once** at the start: _"Would you like the re
 
 ## Authority Hierarchy
 
-Use sources in this priority order:
-
-### Public Sources
-
-1. **Tier 1 (Primary)**: learn.microsoft.com, azure.microsoft.com — canonical product docs for names, features, configurations, limits, pricing, SLAs, and guidance.
-2. **Tier 2 (Secondary)**: techcommunity.microsoft.com, devblogs.microsoft.com, github.com/microsoft, github.com/Azure — feature announcements, best practices, REST API specs (Azure/azure-rest-api-specs), SDK/CLI source code, official samples.
-3. **Tier 3 (Supplementary)**: developer.microsoft.com, code.visualstudio.com — platform docs, Graph API, SDKs, VS Code documentation.
-4. **Tier 4 (Verified Community)**: Microsoft Q&A, Stack Overflow, Reddit — **only** responses posted by verified Microsoft employees or official Microsoft accounts. Must be cross-referenced against a higher-tier source before citing. Never cite anonymous or community-member answers.
-
-### Internal Sources (Microsoft Confidential)
-
-5. **Tier 5 (Internal Documentation)**: SharePoint sites, internal wikis, engineering documentation portals — design specifications, architectural details, unreleased feature information, internal best practices.
-6. **Tier 6 (Internal Code & Config)**: Product source code repositories, internal configuration files — actual implementation details such as default values, flags, error messages, supported API versions.
-7. **Tier 7 (Internal Metadata)**: Product catalogs and metadata services (e.g., Service Tree / Eco Manager) — authoritative data on official service names, SKU identifiers, version numbers, feature flags, regional availability, and service limits.
-
-> **Rule**: Internal sources (Tiers 5–7) must **never** be cited in public-facing content. They are used only to validate accuracy. Any finding derived solely from an internal source must appear in the **Internal Findings (Confidential)** section of the response and must be clearly marked as `[INTERNAL]`.
-
-### Excluded Sources
-
-- Third-party blogs, personal blogs, YouTube (unless official Microsoft channel)
-- Anonymous or non-Microsoft community responses on Stack Overflow, Reddit, or forums
-- Do NOT use training data as a source — always verify against live documentation
+Use the tiered source hierarchy from SKILL.md (Tiers 1–4 public, Tiers 5–7 internal). Higher tier always wins. Internal sources never appear in public-facing content — isolate in Internal Findings section marked `[INTERNAL]`. Do not cite training data, third-party blogs, or anonymous community responses.
 
 ## Workflow
 
@@ -193,51 +172,14 @@ Key points:
 
 ## Rules
 
-- **DO** search multiple times with different queries to get comprehensive coverage
-- **DO** fetch full pages for key sources rather than relying only on search snippets
+- **DO** search multiple times with different queries for comprehensive coverage
+- **DO** fetch full pages for key sources; don't rely on search snippets alone
 - **DO** cite every factual claim with a specific URL and source tier
-- **DO** distinguish between GA features, preview features, and deprecated features
-- **DO** note when information may be version-specific or region-specific
-- **DO** verify Stack Overflow / Reddit responses are from official Microsoft accounts before citing
-- **DO** cross-reference Tier 4 community insights against higher-tier sources
-- **DO** consult internal sources when public sources are incomplete or ambiguous
-- **DO** isolate all internal-source findings in the Internal Findings section
-- **DO** use workspace search to find related content the user may already have
-- **DO** classify each claim's verification status (Verified / Partially Verified / Internally Verified / Unverifiable)
-- **DO NOT** cite anonymous community responses or non-Microsoft third-party sources
-- **DO NOT** present training data as fact — always verify against fetched documentation
-- **DO** write findings to a file when `output:file` or `output:both` is specified, using the naming convention `research_[topic_slug]_YYYYMMDD.md`
-- **DO NOT** edit existing files unless the user explicitly asks you to
-- **DO NOT** include internal source links or confidential details outside the Internal Findings section
+- **DO** distinguish GA, preview, and deprecated features
+- **DO** classify verification status: Verified / Partially Verified / Internally Verified / Unverifiable
+- **DO** write findings to file when `output:file` or `output:both` (naming: `research_[topic_slug]_YYYYMMDD.md`)
+- **DO NOT** cite anonymous community responses or present training data as fact
+- **DO NOT** edit existing files unless explicitly asked
+- **DO NOT** include internal source links outside the Internal Findings section
 
-## Quality Checklist
-
-Before responding, confirm:
-
-- [ ] Every factual claim is verified against at least one fetched source
-- [ ] Claims cite the highest-tier source available (prefer Tier 1 over lower tiers)
-- [ ] All public URLs are from allowed Microsoft domains or verified Microsoft accounts
-- [ ] Stack Overflow / Reddit citations are confirmed from official Microsoft accounts
-- [ ] Internal findings are isolated in the confidential section and tagged `[INTERNAL]`
-- [ ] No internal source links appear outside the Internal Findings section
-- [ ] Deprecation/retirement status checked for relevant services
-- [ ] Version applicability noted where relevant
-- [ ] Code examples sourced from official samples and validated
-- [ ] Response is structured with clear sections, inline citations, and source tiers
-- [ ] Unverifiable claims are flagged explicitly rather than presented as fact
-- [ ] Output delivered in the format the user requested (chat, file, or both)
-
-## Source Reference
-
-| Source | Tier | Access | Best for Validating |
-|--------|------|--------|---------------------|
-| Microsoft Learn & Azure websites | Tier 1 | Public | Product names, features, configurations, limits, pricing, guidance |
-| TechCommunity & DevBlogs | Tier 2 | Public | Feature announcements, updates, best practices from product teams |
-| GitHub repos (REST specs, SDKs, CLI) | Tier 2 | Public | API schemas, parameters, defaults, code examples |
-| developer.microsoft.com, code.visualstudio.com | Tier 3 | Public | Platform docs, Graph API, SDKs, VS Code |
-| Microsoft Q&A (official responses) | Tier 4 | Public | Clarifications, edge cases, engineer-answered Q&A |
-| Stack Overflow (verified Microsoft employees) | Tier 4 | Public | Engineer insights, workarounds, undocumented behaviors |
-| Reddit (verified Microsoft accounts) | Tier 4 | Public | Informal announcements, community engagement from MS employees |
-| Internal documentation (SharePoint, wikis) | Tier 5 | Internal | Design specs, feature internals, unreleased details |
-| Internal codebases & config files | Tier 6 | Internal | Default values, flags, error messages, implementation truth |
-| Internal product metadata & catalogs | Tier 7 | Internal | Service names, SKUs, API versions, limits, availability |
+See SKILL.md for the full quality checklist and source reference table.

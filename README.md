@@ -1,22 +1,33 @@
 # .github
 
-Personal GitHub profile repo containing Copilot prompt files, agent definitions, and chat modes for Azure documentation workflows.
+Personal GitHub profile repo containing Copilot skills for Azure documentation workflows.
 
-## Prompts
+## Skills
 
-| File | Type | Description |
-|------|------|-------------|
-| `complete-fact-check.prompt.md` | Skill | Fact-check the current article against official Microsoft documentation |
-| `complete-fact-checker-internal.prompt.md` | Skill | Fact-check using both public and internal Microsoft resources |
-| `complete-freshness-review.prompt.md` | Skill | Full freshness review — update outdated content, fact-check, fix links, and optionally commit + PR |
-| `fact-check-and-edit.prompt.md` | Skill | Fact-check and edit the current article in-place, with chat references |
-| `microsoft-researcher.prompt.md` | Skill | Research a topic using only official Microsoft documentation and resources |
-| `sources-for-fact-checking-publ.md` | Reference | Comprehensive list of public authoritative sources for fact-checking |
-| `microsoft-fact-checker.agent.md` | Agent | Microsoft Documentation Fact-Checking agent |
+All skills live in `copilot/skills/` and are automatically available in VS Code via GitHub Copilot.
+
+| Skill | Description | Size |
+|-------|-------------|------|
+| **ado-work-items** | Create and validate ADO work items per Azure Core Content Standards | 11 KB |
+| **azure-quickstart-templates** | Review, validate, or create Azure Quickstart Templates | 19 KB |
+| **doc-verifier** | Verify technical accuracy of Microsoft documentation (fact-check, freshness, research) | 100 KB |
+| **doc-writer** | Scaffold and write Azure documentation articles (how-to, concept, quickstart, tutorial, overview) | 23 KB |
+| **documentor-workflow** | Editorial quality workflows — SEO, metadata, engagement, markdown auto-fix, link validation | 35 KB |
 
 ## Usage
 
-These prompt files are automatically available in VS Code via GitHub Copilot when this repo exists under your GitHub account as `.github`.
+Skills are invoked in VS Code Copilot Chat:
 
-- **Skills** (`#` prefix): `#complete-fact-check`, `#fact-check-and-edit`, `#microsoft-researcher`, etc.
-- **Agents** (`@` prefix): `@microsoft-fact-checker`
+- Reference a skill with `#` prefix: `#doc-verifier`, `#doc-writer`, `#ado-work-items`
+- Each skill's `SKILL.md` describes workflows and when-to-use guidance
+- See individual skill `README.md` files for detailed usage examples
+
+## Structure
+
+```
+copilot/skills/<skill-name>/
+├── SKILL.md          # Skill definition (read by Copilot)
+├── README.md         # Usage documentation
+├── assets/           # Prompt files for specific workflows
+└── references/       # On-demand reference material
+```

@@ -15,24 +15,7 @@ You MUST iterate and keep working until ALL fact-checking tasks are completely r
 
 ## Authority Hierarchy for Microsoft Fact-Checking
 
-### Tier 1 Sources (PRIMARY - Always Use First)
-- **learn.microsoft.com**: Official Microsoft documentation, tutorials, and technical guides
-- **docs.microsoft.com**: Legacy Microsoft documentation (being migrated to learn.microsoft.com)
-- **microsoft.com/en-us/security**: Official security documentation
-- **azure.microsoft.com**: Azure-specific documentation
-
-### Tier 2 Sources (SECONDARY - Use for Additional Context)
-- **techcommunity.microsoft.com**: Official Microsoft technical community posts
-- **devblogs.microsoft.com**: Official Microsoft developer blogs
-- **github.com/microsoft**: Official Microsoft repositories and documentation
-- **code.visualstudio.com**: VS Code documentation and API references
-- **developer.microsoft.com**: Microsoft developer platform documentation
-
-### Tier 3 Sources (VERIFICATION ONLY - Require Cross-Reference)
-- Stack Overflow Microsoft-tagged posts
-- Third-party Microsoft-focused blogs
-- Community forums and discussions
-- GitHub Issues in Microsoft repositories (for bug reports and feature requests)
+Use the tiered source hierarchy from SKILL.md. Tier 1 (learn.microsoft.com) is always primary. Cross-reference against Tier 2 (TechCommunity, DevBlogs, GitHub) and Tier 3 (Stack Overflow MS-tagged posts, community forums) for additional context.
 
 ## Mandatory Fact-Checking Workflow
 
@@ -116,16 +99,11 @@ For each fact-checked item, provide:
 
 ## Quality Assurance Checklist
 
-Before completing any fact-check, verify:
-- All claims traced to official Microsoft sources
-- URLs accessible and content current
-- Version/product specificity clearly stated
+See SKILL.md for the standard quality checklist. Additionally:
+- All claims traced to official Microsoft sources with access dates
 - Code examples tested against official documentation
-- Deprecation status checked for older features
 - Alternative approaches documented when applicable
-- Potential security implications noted
-- Performance considerations included
-- Cross-platform compatibility addressed where relevant
+- Security and performance implications noted where relevant
 
 ## Error Handling and Uncertainty
 

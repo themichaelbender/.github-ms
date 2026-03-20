@@ -26,21 +26,9 @@ Fact-check the currently open article against **both public and internal** Micro
 
 ## Authority Hierarchy
 
-Use sources in this priority order:
+Use the tiered source hierarchy from SKILL.md: Tiers 1–3 (public) + Tiers 4–6 (internal: documentation, code, metadata).
 
-### Public Sources
-
-1. **Tier 1 (Primary)**: learn.microsoft.com, azure.microsoft.com — canonical product docs for names, features, configurations, limits, and guidance.
-2. **Tier 2 (Secondary)**: techcommunity.microsoft.com, devblogs.microsoft.com, github.com/microsoft — feature announcements, best practices, REST API specs (Azure/azure-rest-api-specs), SDK/CLI source code.
-3. **Tier 3 (Cross-reference only)**: Microsoft Q&A, Stack Overflow, community blogs — edge-case clarifications, community-sourced solutions.
-
-### Internal Sources (Microsoft Confidential)
-
-4. **Tier 4 (Internal Documentation)**: SharePoint sites, internal wikis, engineering documentation portals — design specifications, architectural details, unreleased feature information, internal best practices.
-5. **Tier 5 (Internal Code & Config)**: Product source code repositories, internal configuration files — actual implementation details such as default values, flags, error messages, supported API versions.
-6. **Tier 6 (Internal Metadata)**: Product catalogs and metadata services (e.g., Service Tree / Eco Manager) — authoritative data on official service names, SKU identifiers, version numbers, feature flags, regional availability, and service limits.
-
-> **Rule**: Internal sources (Tiers 4–6) must **never** be cited in public-facing documentation. They are used only to validate accuracy. Any finding derived solely from an internal source must appear in the **Internal Findings (Confidential)** section of the report and must not be applied to the article without explicit author approval.
+> **Rule**: Internal sources (Tiers 4–6) must **never** be cited in public-facing documentation. Internal findings go in the **Internal Findings (Confidential)** report section and require author approval before applying.
 
 ## Steps
 
@@ -200,28 +188,9 @@ Ask if the user wants to:
 
 ## Quality Checklist
 
-Before finishing, confirm:
+See SKILL.md for the standard quality checklist. Additionally for this workflow:
 
-- [ ] All technical claims verified against Tier 1 public sources
 - [ ] Internal sources consulted for claims not fully verifiable publicly
-- [ ] Every public correction includes a learn.microsoft.com or public citation
-- [ ] Internal findings are isolated in the confidential report section
-- [ ] No internal source links or confidential details appear outside the Internal Findings section
-- [ ] Code examples validated
-- [ ] Version/deprecation status confirmed
-- [ ] Report generated and saved
-- [ ] ms.date updated (for public-source corrections only)
+- [ ] Internal findings isolated in the confidential report section
+- [ ] No internal source links or confidential details appear outside Internal Findings
 - [ ] Author notified of pending internal-source suggestions
-
-## Source Reference
-
-| Source | Access | Best for Validating |
-|--------|--------|---------------------|
-| Microsoft Learn & Azure websites | Public | Product names, features, configurations, limits, guidance |
-| TechCommunity & DevBlogs | Public | Feature announcements, updates, best practices from product teams |
-| Microsoft Q&A | Public | Clarifications, edge cases, engineer-answered Q&A |
-| Stack Overflow & community forums | Public | Community solutions, usage examples, undocumented behaviors |
-| GitHub repos (REST specs, SDKs, CLI) | Public | API schemas, parameters, defaults, code examples |
-| Internal documentation (SharePoint, wikis) | Internal | Design specs, feature internals, unreleased details |
-| Internal codebases & config files | Internal | Default values, flags, error messages, implementation truth |
-| Internal product metadata & catalogs | Internal | Service names, SKUs, API versions, limits, availability |
