@@ -34,9 +34,17 @@ doc-writer/
 ├── README.md
 └── references/
     ├── article-templates.md      # Markdown templates for each article type
-    ├── formatting-rules.md       # Code blocks, alerts, tables, links, images
-    └── writing-style.md          # Microsoft writing style essentials
+    ├── formatting-rules.md       # Local pointer → _shared/formatting-rules.md
+    └── writing-style.md          # Local pointer → _shared/writing-style.md
 ```
+
+### Cross-skill dependencies
+
+| Dependency | Purpose |
+|-----------|----------|
+| `_shared/formatting-rules.md` | Canonical formatting rules (code fences, alerts, tables, links, images) |
+| `_shared/seo-and-metadata.md` | Title, description, H1, ms.topic, and frontmatter rules |
+| `_shared/writing-style.md` | Microsoft writing style essentials (voice, brevity, capitalization) |
 
 ---
 
@@ -69,7 +77,10 @@ Open **GitHub Copilot Chat** in agent mode.
 ## Reference files
 
 | File | Content |
-|------|---------|
+|------|----------|
 | [article-templates.md](references/article-templates.md) | Complete markdown templates for all 5 article types |
-| [formatting-rules.md](references/formatting-rules.md) | Code blocks, alert syntax, tables, cross-links, images |
-| [writing-style.md](references/writing-style.md) | Microsoft writing style: voice, brevity, capitalization, SEO |
+| [_shared/formatting-rules.md](../_shared/formatting-rules.md) | Code blocks, alert syntax, tables, cross-links, images (canonical) |
+| [_shared/seo-and-metadata.md](../_shared/seo-and-metadata.md) | Title, description, H1, ms.topic, and frontmatter rules (canonical) |
+| [_shared/writing-style.md](../_shared/writing-style.md) | Microsoft writing style: voice, brevity, capitalization (canonical) |
+
+> Local copies in `references/` (formatting-rules.md, writing-style.md) contain a consolidation notice pointing to the `_shared/` canonical versions.

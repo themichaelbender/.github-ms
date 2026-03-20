@@ -23,11 +23,11 @@ Verify technical accuracy of Microsoft documentation across **any product area**
 | 3 | **Full Report** | Comprehensive audit with saved report artifact | Edits + `factcheck_*.md` | `complete-fact-check.prompt.md` |
 | 4 | **Internal + Public** | Cross-reference internal MS resources | Edits (public) + confidential report | `complete-fact-checker-internal.prompt.md` |
 | 5 | **Freshness Review** | Staleness + accuracy in one pass | Edits + chat summary | `complete-freshness-review.prompt.md` |
-| 6 | **Deep Agent** | Per-fact evidence for critical content | WHAT/WHY/EVIDENCE output | `microsoft-fact-checker.agent.md` |
+| 6 | **Deep Agent** | Per-fact evidence for critical content | WHAT/WHY/EVIDENCE output | `microsoft-fact-checker-slim.agent.md` |
 | 7 | **Batch Report** | Verify folder or file set | `factcheck_*.md` report | `batch-report.prompt.md` |
 | 8 | **PR Review** | Fact-check all changed files in a PR | `factcheck_PR*.md` report | `pr-review.prompt.md` |
 | 9 | **Research** | Investigate a topic with citations, no edits | Research report | `microsoft-researcher.prompt.md` |
-| 10 | **CIA Analysis** | Customer incident patterns for a service area | Incident analysis report | `CIA-Analysis.prompt.md` |
+| 10 | **CIA Analysis** | Customer incident patterns for a service area | Incident analysis report | `microsoft-fact-checker-cia.agent.md` |
 
 ### Decision guide
 
@@ -52,7 +52,7 @@ Before verifying, determine the product area. Ask if not obvious:
 4. **Output**: In-place edits, report, chat, or both
 5. **Depth**: Quick check or thorough
 
-Use answers to select search domains from the table below.
+Use answers to select search domains and load the matching sources catalog YAML from `copilot/skills/sources/` (e.g., `azure-networking.yml` for Azure Networking). This gives you the full list of relevant GitHub repos for Tier 2 source verification.
 
 ### Product area search domains
 
@@ -68,7 +68,7 @@ Use answers to select search domains from the table below.
 
 ## Source authority hierarchy
 
-Always prefer the highest available tier. See [references/source-hierarchy.md](references/source-hierarchy.md) for the complete reference.
+Always prefer the highest available tier. See [_shared/source-hierarchy.md](../_shared/source-hierarchy.md) for the complete reference with repository catalog integration.
 
 | Tier | Source | Use for |
 |------|--------|---------|

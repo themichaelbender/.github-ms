@@ -53,16 +53,25 @@ doc-verifier/
 │   ├── complete-fact-check.prompt.md           # W3: Full Report
 │   ├── complete-fact-checker-internal.prompt.md # W4: Internal + Public
 │   ├── complete-freshness-review.prompt.md     # W5: Freshness Review
-│   ├── microsoft-fact-checker.agent.md         # W6: Deep Agent
+│   ├── microsoft-fact-checker.agent.md         # Full agent (all tools)
+│   ├── microsoft-fact-checker-slim.agent.md    # W6: Deep Agent (25 tools)
 │   ├── batch-report.prompt.md                  # W7: Batch Report
 │   ├── pr-review.prompt.md                     # W8: PR Review
 │   ├── microsoft-researcher.prompt.md          # W9: Research
-│   └── CIA-Analysis.prompt.md                  # W10: CIA Analysis
+│   ├── CIA-Analysis.prompt.md                  # CIA analysis prompt
+│   └── microsoft-fact-checker-cia.agent.md     # W10: CIA Agent (31 tools)
 └── references/
-    ├── source-hierarchy.md                     # Tiered source authority reference
+    ├── source-hierarchy.md                     # Local pointer → _shared/source-hierarchy.md
     ├── source-guide.md                         # Educational guide to sources
     └── workflows.md                            # Detailed per-workflow procedures
 ```
+
+### Cross-skill dependencies
+
+| Dependency | Purpose |
+|-----------|----------|
+| `_shared/source-hierarchy.md` | Canonical tiered source authority reference |
+| `sources/` | Repository catalog — Step 0 loads category YAML for Tier 2 verification |
 
 ---
 
@@ -121,6 +130,18 @@ Open **GitHub Copilot Chat** in agent mode and describe what you want verified. 
 | `microsoft_docs_search` unavailable | Check MCP config for Microsoft Learn MCP Server. Restart VS Code. |
 | PR workflow can't load PR | Ensure GitHub MCP Server configured and `gh auth status` shows authenticated. |
 | Agent doesn't ask scoping questions | Add context: "fact-check this M365 Security article about Defender for Endpoint" |
+
+---
+
+## Agent variants
+
+| Agent file | Tools | Best for |
+|-----------|-------|----------|
+| `microsoft-fact-checker.agent.md` | ~95 | Full capability — all MCP tools available |
+| `microsoft-fact-checker-slim.agent.md` | 25 | Standard fact-checking — faster startup, lower token usage |
+| `microsoft-fact-checker-cia.agent.md` | 31 | Customer incident analysis — includes ADO work item tools |
+
+The slim agent is the default for Workflow 6 (Deep Agent). The CIA agent is used for Workflow 10 (CIA Analysis). The full agent is available as a fallback when the slim variant lacks a needed tool.
 
 ---
 

@@ -1,6 +1,6 @@
 # Source Authority Hierarchy
 
-> **Consolidated**: This file is maintained at [_shared/source-hierarchy.md](../../_shared/source-hierarchy.md). Load the shared version for the complete reference including repository catalog integration.
+Complete reference of allowed sources across all fact-checker workflows, organized by tier.
 
 ## Public Sources (All Workflows)
 
@@ -81,11 +81,15 @@ Tier 1 sources are the **ground truth**. If a lower-tier source contradicts Tier
 
 **Use for**: Service names, SKUs, API versions, limits, regional availability, retirement timelines.
 
-## Cross-Tier Rules
+---
 
-1. **Always prefer the highest available tier** — Don't cite Tier 4 if Tier 1 covers the same claim.
-2. **Internal sources never appear in public docs** — Internal findings go in a separate confidential section.
-3. **Contradictions resolve upward** — Higher tier wins unless the lower tier is more recent AND from an authoritative Microsoft source.
-4. **Unverifiable is acceptable** — Flag claims that can't be verified rather than removing them.
-5. **Date matters** — A newer Tier 2 blog post may supersede an older Tier 1 doc page. Note the dates.
-6. **REST API specs are ground truth for APIs** — GitHub REST specs (Tier 2) are authoritative for API parameters and schemas.
+## Repository Catalog Integration
+
+For GitHub-hosted sources (Tier 2), use the sources catalog to identify relevant repos:
+
+- **Sources catalog**: `copilot/skills/sources/` — YAML data files with 3,000+ repos across 4 orgs
+- **Per-org files**: `Azure.yml`, `MicrosoftDocs.yml`, `microsoft.yml`, `MicrosoftCopilot.yml`
+- **Per-category files**: `azure-networking.yml`, `azure-compute.yml`, `azure-security.yml`, etc.
+- **Index**: `categories-index.yml` — master list of all categories with repo counts
+
+When scoping a fact-check to a specific product area, load the matching category YAML to identify relevant repos for source code and spec verification.

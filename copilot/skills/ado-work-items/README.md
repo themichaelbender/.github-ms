@@ -34,6 +34,14 @@ ado-work-items/
     └── ado-work-item-standards.prompt.md
 ```
 
+### Cross-skill dependencies
+
+| Dependency | Purpose |
+|-----------|---------|
+| `_shared/` | No direct dependency |
+| `sources/` | Repo URL lookup — resolves GitHub clone URLs from the repository catalog |
+| `my-workflow/references/repos.md` | Curated active repo list for quick reference |
+
 ---
 
 ## Usage
@@ -60,6 +68,10 @@ The agent will:
 2. Check all 4 required sections are present and well-written
 3. Verify dates and GitHub PR links
 4. Report gaps and suggest improvements
+
+### Repo URL lookup
+
+When a work item references a GitHub repo or article path, the skill resolves clone URLs from the sources catalog at `copilot/skills/sources/`. Use per-org YAML files (`MicrosoftDocs.yml`, `Azure.yml`) or category files (`azure-networking.yml`) to find the correct repo.
 
 ---
 

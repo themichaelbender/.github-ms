@@ -1,5 +1,7 @@
 # Metadata Rules for Azure Documentation
 
+> **Consolidated**: This file is maintained at [_shared/seo-and-metadata.md](../../_shared/seo-and-metadata.md). Load the shared version for the complete reference.
+
 ## Title (`title:` in YAML frontmatter)
 
 - **Length**: 30-65 characters (including spaces)

@@ -1,7 +1,5 @@
 # Microsoft Writing Style for Azure Documentation
 
-> **Consolidated**: This file is maintained at [_shared/writing-style.md](../../_shared/writing-style.md). Load the shared version for the complete reference.
-
 Core writing principles for Microsoft Learn articles.
 
 ## Brand Voice
@@ -85,11 +83,3 @@ This follows the agile user story format and guides the article's focus. Example
 
 - `#customer intent: As a cloud administrator, I want to configure health probes so that I can monitor the availability of my backend instances.`
 - `#customer intent: As a developer, I want to deploy a function app so that I can run serverless code in Azure.`
-
-## SEO Essentials
-
-- **Title**: 30–65 characters, primary keyword near the beginning, title case
-- **Description**: 120–165 characters, unique, active language, primary keyword at start, include a call to action
-- **H1**: Matches the title, uses sentence casing, contains the primary keyword
-- **Subheadings**: Use sentence casing, include secondary keywords where natural
-- **Image alt text**: Format as "Screenshot of..." describing what the reader sees

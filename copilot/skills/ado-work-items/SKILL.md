@@ -34,6 +34,10 @@ Every work item description must include:
 3. **What does success look like?** — customer outcome
 4. **How will you measure success?** — concrete metrics
 
+## Repo URL lookup
+
+When a work item references a GitHub repo or article path, resolve the repo URL from the sources catalog at `copilot/skills/sources/`. Use the per-org YAML files (`MicrosoftDocs.yml`, `Azure.yml`) to find the correct clone URL, or use `my-workflow/references/repos.md` for the curated active repos.
+
 ## Title format
 
 `{Service} | {WorkflowType} | {Brief Description}`

@@ -47,20 +47,13 @@ Scan the article for common issues and suggest targeted fixes:
 
 Comprehensive editorial review covering all quality dimensions:
 
+> **Multi-agent optimization**: For full editorial reviews, consider spawning parallel `runSubagent` tasks — one for SEO + metadata checks and one for formatting + engagement analysis — then merge results into a single report.
+
 1. Run all Quick Edit Review checks
 2. Apply SEO Review checklist
 3. Apply Engagement Review analysis
-4. Verify writing style against Microsoft Writing Style Guide:
-   - Use contractions (it's, you'll, don't)
-   - Get to the point fast — lead with what matters most
-   - Use bigger ideas, fewer words
-   - Write like you speak — read it aloud
-   - Address reader as "you," refer to Microsoft as "we"
-5. Check formatting rules (see `references/autofix-rules.md`):
-   - Code fences have correct language identifiers
-   - Alert blocks use proper syntax (`> [!NOTE]`, `> [!TIP]`, etc.)
-   - Tables are properly formatted
-   - Lists follow Azure docs conventions
+4. Verify writing style against [_shared/writing-style.md](../_shared/writing-style.md)
+5. Check formatting rules (see [_shared/formatting-rules.md](../_shared/formatting-rules.md))
 6. Validate all links
 7. Produce a comprehensive report organized by: Critical, Important, Suggestions
 
@@ -105,7 +98,7 @@ As a <type of user>, I want <what?> so that <why?>
 
 ## SEO Review
 
-Audit the article against the SEO checklist (see `references/seo-checklist.md`):
+Audit the article against the SEO checklist (see [_shared/seo-and-metadata.md](../_shared/seo-and-metadata.md)):
 
 1. **Title** — 30-65 chars, title case, primary keyword, unique from H1/description
 2. **Description** — 120-165 chars, CTA, primary keyword at beginning, unique
@@ -128,7 +121,7 @@ Analyze the article for engagement metric improvements (see `references/engageme
 
 ## Auto-Fix Markdown
 
-Systematically fix markdown formatting issues (see `references/autofix-rules.md`):
+Systematically fix markdown formatting issues (see [_shared/formatting-rules.md](../_shared/formatting-rules.md)):
 
 1. Fix heading hierarchy (no skipped levels, single H1)
 2. Ensure blank lines before and after headings, code blocks, lists, and alerts
@@ -165,8 +158,8 @@ Update the `ms.date` frontmatter field:
 
 For detailed checklists and rules, load these resources as needed:
 
-- `references/seo-checklist.md` — Complete SEO optimization rules and examples
-- `references/metadata-rules.md` — Title, description, and customer-intent specifications
+- [_shared/seo-and-metadata.md](../_shared/seo-and-metadata.md) — Complete SEO optimization, metadata, and title/description rules
+- [_shared/formatting-rules.md](../_shared/formatting-rules.md) — Formatting standards and auto-fix rules
 - `references/engagement-checklist.md` — Engagement metric troubleshooting and remediation
 - `references/sensitive-identifiers.md` — Approved GUID/secret replacement values by type and severity
 - `references/autofix-rules.md` — Markdown formatting rules and code fence language identifiers

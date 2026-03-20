@@ -47,6 +47,9 @@ For each file:
 ## Step 2 — Verify claims per service group
 
 Process files grouped by service area (batch related searches):
+
+> **Multi-agent optimization**: When verifying 5+ files across multiple service groups, spawn one `runSubagent` per service group to parallelize Tier 1 and Tier 2 searches. Each sub-agent should receive: (1) the file list for its group, (2) the source hierarchy, and (3) the target category YAML from `copilot/skills/sources/` for repo lookups.
+
 1. Search `microsoft_docs_search` for each service area's key topics
 2. Use `microsoft_docs_fetch` to retrieve full reference pages
 3. Use `microsoft_code_sample_search` for code examples

@@ -1,5 +1,7 @@
 # Comprehensive Fact-Checking Sources for Microsoft Documentation
 
+> **Consolidated**: The structured hierarchy is maintained at [_shared/source-hierarchy.md](../../_shared/source-hierarchy.md). This prose guide provides extended discussion and footnotes for each source tier. Load `_shared/source-hierarchy.md` for the concise tiered reference.
+
 ## Key Public Authoritative Sources
 
 **Official Microsoft Documentation (Microsoft Learn & Azure Websites):** The primary sources for verifying facts should remain Microsoft’s own documentation sites. This includes **Microsoft Learn (docs.microsoft.com / learn.microsoft.com)** and official product pages on **Azure’s website (azure.microsoft.com)**[^1]. These sources provide the **canonical descriptions of services, features, configurations, limits, and usage guidelines**. They are maintained by Microsoft and are the first place to cross-check product names, feature capabilities, prerequisites, and official recommendations for all services covered on Microsoft Learn. For example, Microsoft Learn articles will confirm supported configurations or default settings of Azure services, while Azure’s product pages give the approved service descriptions and up-to-date feature lists[^2].

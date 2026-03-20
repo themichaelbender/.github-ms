@@ -1,5 +1,7 @@
 # SEO Checklist for Azure Documentation
 
+> **Consolidated**: This file is maintained at [_shared/seo-and-metadata.md](../../_shared/seo-and-metadata.md). Load the shared version for the complete reference.
+
 ## Title (ms.title / `<title>`)
 
 | Rule | Requirement |

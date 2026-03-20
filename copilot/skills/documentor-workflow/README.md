@@ -33,12 +33,20 @@ documentor-workflow/
 ├── SKILL.md
 ├── README.md
 └── references/
-    ├── autofix-rules.md            # Markdown formatting auto-fix rules
+    ├── autofix-rules.md            # Local pointer → _shared/formatting-rules.md
     ├── engagement-checklist.md     # Engagement metric analysis & remediation
-    ├── metadata-rules.md           # Title, description, H1, ms.date rules
+    ├── metadata-rules.md           # Local pointer → _shared/seo-and-metadata.md
     ├── sensitive-identifiers.md    # Approved placeholder values for GUIDs, secrets
-    └── seo-checklist.md            # SEO audit checklist
+    └── seo-checklist.md            # Local pointer → _shared/seo-and-metadata.md
 ```
+
+### Cross-skill dependencies
+
+| Dependency | Purpose |
+|-----------|----------|
+| `_shared/formatting-rules.md` | Canonical formatting and auto-fix rules |
+| `_shared/seo-and-metadata.md` | Canonical SEO, metadata, and title/description rules |
+| `_shared/writing-style.md` | Microsoft writing style for Full Edit Review |
 
 ---
 
@@ -81,9 +89,11 @@ Open **GitHub Copilot Chat** in agent mode.
 ## Reference files
 
 | File | Content |
-|------|---------|
-| [autofix-rules.md](references/autofix-rules.md) | Heading hierarchy, code fences, alerts, lists, tables, links, spacing |
+|------|----------|
+| [_shared/formatting-rules.md](../_shared/formatting-rules.md) | Heading hierarchy, code fences, alerts, lists, tables, links, spacing (canonical) |
+| [_shared/seo-and-metadata.md](../_shared/seo-and-metadata.md) | Title, description, H1, customer intent, ms.date, frontmatter rules (canonical) |
+| [_shared/writing-style.md](../_shared/writing-style.md) | Microsoft writing style for Full Edit Review (canonical) |
 | [engagement-checklist.md](references/engagement-checklist.md) | Bounce rate, CTR, dwell rate diagnosis and remediation |
-| [metadata-rules.md](references/metadata-rules.md) | Title, description, H1, customer intent, ms.date specifications |
 | [sensitive-identifiers.md](references/sensitive-identifiers.md) | Approved GUID and non-GUID placeholder values |
-| [seo-checklist.md](references/seo-checklist.md) | Title, description, headings, intro, images, internal links |
+
+> Local copies in `references/` (autofix-rules.md, metadata-rules.md, seo-checklist.md) contain consolidation notices pointing to the `_shared/` canonical versions.

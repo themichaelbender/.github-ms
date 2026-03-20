@@ -32,26 +32,9 @@ Ask the user or infer from context:
 
 ### Step 2 — Generate Frontmatter
 
-Use the template from [references/article-templates.md](references/article-templates.md) and fill in:
+Use the template from [references/article-templates.md](references/article-templates.md) and fill in all required fields.
 
-```yaml
----
-title: <Descriptive title — see title rules below>
-description: <One sentence, 120-165 characters, starts with "Learn how to..." or similar>
-author: <GitHub username>
-ms.author: <Microsoft alias>
-ms.service: <azure-service-name>
-ms.topic: <article type from Step 1>
-ms.date: <MM/DD/YYYY — current date>
-#customer intent: As a <role>, I want <what> so that <why>.
----
-```
-
-**Title rules**: 30–65 characters, primary keyword near beginning, title case, no gerunds, no special characters.
-
-**Description rules**: 120–165 characters, unique, active language, primary keyword at beginning, include a call to action.
-
-**Customer intent**: Agile user story format — `As a <type of user>, I want <what?> so that <why?>`.
+For complete title, description, H1, customer-intent, and ms.topic rules, see [_shared/seo-and-metadata.md](../_shared/seo-and-metadata.md).
 
 ### Step 3 — Scaffold the Article Structure
 
@@ -90,28 +73,16 @@ Apply the correct structure for the article type. See [references/article-templa
 
 ### Step 4 — Write Content
 
-Apply the Microsoft writing style from [references/writing-style.md](references/writing-style.md):
+Apply the Microsoft writing style from [_shared/writing-style.md](../_shared/writing-style.md). Key reminders:
 
-- **Voice**: Warm and relaxed, crisp and clear, ready to lend a hand
-- **Brevity**: Bigger ideas, fewer words. Get to the point fast
-- **Procedures**: Max 7 numbered steps per section, imperative verbs
-- **UI interactions**: "select" not "click", "enter" not "type", "open" for apps/files, "go to" for menus/tabs
-- **Casing**: Sentence-style capitalization for all headings (CRITICAL — do NOT use title case for H2+ headings)
-- **Contractions**: Use them — write like you speak
-- **Lists**: Oxford comma, single space after periods
+- Sentence-style capitalization for all H2+ headings (CRITICAL)
+- Max 7 numbered steps per section, imperative verbs
+- "select" not "click", "enter" not "type"
+- Use contractions, Oxford comma, active voice
 
 ### Step 5 — Apply Formatting Standards
 
-See [references/formatting-rules.md](references/formatting-rules.md) for complete rules.
-
-**Key rules:**
-- Tables for all settings/configuration steps
-- Language-specific code fences: `azurecli`, `azurepowershell`, `json`, `bash`, `csharp`, `python`
-- Alert blocks: `> [!NOTE]`, `> [!IMPORTANT]`, `> [!CAUTION]`, `> [!TIP]`, `> [!WARNING]`
-- Cross-links with relative paths: `[Link text](other-article.md)`
-- No screenshots — use text instructions and tables
-- Bold for UI elements: **Create**, **Save**, **Next**
-- Italics for user-provided values: *myResourceGroup*
+See [_shared/formatting-rules.md](../_shared/formatting-rules.md) for complete formatting and auto-fix rules (code fences, alerts, tables, links, images, UI formatting).
 
 ### Step 6 — Validate
 
@@ -125,7 +96,7 @@ Before presenting the article, verify:
 - [ ] Prerequisites section present (if applicable)
 - [ ] Related content or Next steps section at the end
 - [ ] No placeholders or TODO markers remain
-- [ ] Sensitive identifiers use approved fake values (see `/documentor-workflow` skill for approved GUIDs)
+- [ ] Sensitive identifiers use approved fake values (see `documentor-workflow/references/sensitive-identifiers.md`)
 
 ### Step 7 — Publishing Guidance
 

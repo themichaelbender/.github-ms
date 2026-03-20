@@ -37,6 +37,7 @@ Gather the following from the user. If any field is missing, prompt for it befor
 - Be specific: list the files, sections, or new pages involved.
 - Include the type of work: freshness review, new article, rewrite, screenshot update, code sample update, etc.
 - Reference the official service documentation or feature page that serves as the source of truth.
+- **Repo lookup**: Resolve the correct repo URL from `copilot/skills/sources/` (per-org YAMLs) or `my-workflow/references/repos.md`.
 
 ### 3. What does success look like?
 > Describe the desired end state once this work is published.

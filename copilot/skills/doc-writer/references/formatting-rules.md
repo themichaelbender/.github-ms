@@ -1,6 +1,6 @@
 # Azure Documentation Formatting Rules
 
-Standards for formatting Microsoft Learn articles.
+> **Consolidated**: This file is maintained at [_shared/formatting-rules.md](../../_shared/formatting-rules.md). Load the shared version for the complete reference.
 
 ## Code Blocks
 

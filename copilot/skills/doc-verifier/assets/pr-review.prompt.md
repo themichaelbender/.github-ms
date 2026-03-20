@@ -49,6 +49,9 @@ For each file:
 ## Step 3 — Verify per service group
 
 Process files grouped by service area:
+
+> **Multi-agent optimization**: When the PR contains files across 3+ service groups, spawn one `runSubagent` per service group for parallel verification. Each sub-agent receives its file list, the source hierarchy, and the matching category YAML from `copilot/skills/sources/`.
+
 1. Search `microsoft_docs_search` for each service area
 2. Use `microsoft_docs_fetch` for full reference pages
 3. Use `microsoft_code_sample_search` for code examples

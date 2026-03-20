@@ -30,7 +30,10 @@ Ask the user (skip if already clear):
 Search across official sources:
 1. `microsoft_docs_search` — Multiple queries targeting different angles of the topic
 2. Use product-area-specific search paths from SKILL.md → Product Area Search Domains
-3. Note all potentially relevant pages with URLs and tiers
+3. Load the matching category YAML from `copilot/skills/sources/` to identify relevant GitHub repos for Tier 2 source lookups
+4. Note all potentially relevant pages with URLs and tiers
+
+> **Multi-agent optimization**: For broad research topics spanning multiple service areas, spawn one `runSubagent` per tier to parallelize search — one for Tier 1 (learn.microsoft.com), one for Tier 2 (TechCommunity/DevBlogs/GitHub), and one for Tier 3/4 (community/Q&A). Merge results and resolve by tier priority.
 
 ## Step 2 — Deep retrieval
 
