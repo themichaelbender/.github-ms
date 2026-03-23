@@ -3,15 +3,15 @@ name: my-workflow
 description: >-
   Default working instructions for Michael Bender (@mbender-ms). Covers Azure
   networking documentation responsibilities, repo conventions, environment
-  commands (sync prompts, repo management), and PR description framework.
-  Automatically referenced by agents to understand how I work.
+  commands, and PR/work-item standards. Delegates specialized work to sibling
+  skills and sub-agents for efficiency.
 argument-hint: "e.g., 'sync prompts', 'list my repos', 'draft PR description for Load Balancer article', 'what services do I own?'"
 user-invocable: true
 ---
 
 # My Workflow — Default Agent Instructions
 
-Personal working context for **Michael Bender** (`@mbender-ms`). This skill provides agents with baseline knowledge about my role, responsibilities, services, repos, and common commands so they can act without repeated context.
+Personal working context for **Michael Bender** (`@mbender-ms`). Provides agents with baseline context about role, services, repos, and conventions. **Load reference files only when the task requires them** — don't pre-load everything.
 
 ---
 
@@ -30,30 +30,51 @@ Personal working context for **Michael Bender** (`@mbender-ms`). This skill prov
 
 ---
 
+## Task Routing — Delegate Before Doing
+
+Before processing a request inline, check whether a sibling skill or sub-agent should handle it. **Delegation saves tokens and produces better results.**
+
+| Task pattern | Delegate to | How |
+|---|---|---|
+| Write/scaffold a new article | `doc-writer` skill | Invoke skill directly |
+| Fact-check or verify accuracy | `doc-verifier` skill or `microsoft-fact-checker` agent | Use agent for deep checks; skill for quick fixes |
+| Create/validate ADO work items | `ado-work-items` skill | Invoke skill directly |
+| SEO, metadata, editorial review | `documentor-workflow` skill | Invoke skill directly |
+| Codebase exploration or research | `Explore` agent | Spawn sub-agent with thoroughness level |
+| PR description generation | `generate_pr_description` MCP tool | Fall back to [references/pr-framework.md](references/pr-framework.md) |
+| Complex multi-step workflows | Spawn sub-agents in parallel | See [Sub-agent patterns](#sub-agent-patterns) below |
+
+**Rule**: If a task maps to a row above, delegate it — don't re-implement the logic inline.
+
+### Sub-agent patterns
+
+Use `runSubagent` for independent, parallelizable work:
+
+- **Fact-check + editorial review** — Spawn `microsoft-fact-checker` and a second agent for `documentor-workflow` SEO/engagement checks simultaneously, then merge results.
+- **Multi-file verification** — Spawn one `Explore` agent per file group to gather context, then process findings.
+- **Research + writing** — Spawn `Explore` agent for research while you scaffold the article structure, then integrate findings.
+
+**When NOT to spawn**: Single-file edits, quick commands, simple lookups. Sub-agents have overhead — only use them when the task is complex enough to benefit from parallelism.
+
+---
+
 ## Services & Responsibilities
 
 ### Primary services (I own these)
 
-| Service | Repo path | ms.service | Learn URL prefix |
-|---------|-----------|------------|------------------|
-| **Azure Load Balancer** | `articles/load-balancer/` | `azure-load-balancer` | `/azure/load-balancer/` |
-| **Azure NAT Gateway** | `articles/nat-gateway/` | `azure-nat-gateway` | `/azure/nat-gateway/` |
-| **Azure Virtual Network** | `articles/virtual-network/` | `azure-virtual-network` | `/azure/virtual-network/` |
-| **Azure Networking (cross-service)** | `articles/networking/` | `azure-networking` | `/azure/networking/` |
+| Service | Repo path | ms.service |
+|---------|-----------|------------|
+| Azure Load Balancer | `articles/load-balancer/` | `azure-load-balancer` |
+| Azure Virtual Network Manager | `articles/virtual-network-manager/` | `azure-virtual-network-manager` |
+| Azure Networking (cross-service) | `articles/networking/` | `azure-networking` |
+| Azure Network Security Perimeter | `articles/private-link/` | `azure-network-security-perimeter` |
+| Azure Application Gateway | `articles/application-gateway/` | `azure-application-gateway` |
 
 ### Secondary services (I contribute to)
 
-| Service | Repo path | ms.service |
-|---------|-----------|------------|
-| **Application Gateway** | `articles/application-gateway/` | `azure-application-gateway` |
-| **Azure DDoS Protection** | `articles/ddos-protection/` | `azure-ddos-protection` |
-| **Web Application Firewall** | `articles/web-application-firewall/` | `azure-web-application-firewall` |
-| **Azure Firewall** | `articles/firewall/` | `azure-firewall` |
-| **Azure Bastion** | `articles/bastion/` | `azure-bastion` |
-| **Azure Front Door** | `articles/frontdoor/` | `azure-frontdoor` |
-| **Azure DNS** | `articles/dns/` | `azure-dns` |
-| **Azure VPN Gateway** | `articles/vpn-gateway/` | `azure-vpn-gateway` |
-| **Azure ExpressRoute** | `articles/expressroute/` | `azure-expressroute` |
+ DDoS Protection · Web Application Firewall · Azure Firewall · Bastion · Front Door · DNS · VPN Gateway · ExpressRoute
+
+> **Need repo paths or ms.service values for secondary services?** Ask, or look up in the sources catalog at `copilot/skills/sources/azure-networking.yml`.
 
 ### Spotlight / project work
 
@@ -61,115 +82,68 @@ Personal working context for **Michael Bender** (`@mbender-ms`). This skill prov
 - Secure network foundation architectures (hub-spoke, layered security)
 - Cross-service networking scenarios
 
-> **Maintaining this list**: Add or remove services as responsibilities change. This list drives agent context for work item creation, PR routing, and fact-checking scope.
-
 ---
 
-## Microsoft Learn GitHub Repos
+## Repos & Sources
 
-<!-- Curated repos I actively contribute to. For full repo catalog across all orgs, see copilot/skills/sources/ -->
+**Primary repos**: `azure-docs-pr` (private), `SupportArticles-docs-pr` (private), `azure-docs` (public mirror)
 
-| Repo | Clone URL | Purpose |
-|------|-----------|---------|
-| `azure-docs-pr` | `https://github.com/MicrosoftDocs/azure-docs-pr.git` | Azure documentation (private) |
-| `SupportArticles-docs-pr` | `https://github.com/MicrosoftDocs/SupportArticles-docs-pr.git` | Support/troubleshooting articles |
-| `azure-docs` | `https://github.com/MicrosoftDocs/azure-docs.git` | Azure documentation (public mirror) |
-
-For the complete repository catalog (3,000+ repos across MicrosoftDocs, Azure, microsoft orgs), see [references/repos.md](references/repos.md) and `copilot/skills/sources/`.
+> **Full details**: Load [references/repos.md](references/repos.md) only when you need clone URLs, fork setup, or the extended repo list. For the 3,000+ repo catalog, see `copilot/skills/sources/`.
 
 ---
 
 ## Quick Commands
 
-Frequently used commands that agents should know how to execute when I ask.
-
 ### Sync prompts
 
-Pull latest from the `.github` repo and sync all prompt/agent files to VS Code:
-
 ```powershell
-cd C:\github\.github
-git pull origin main
-.\sync-prompts.ps1
+cd C:\github\.github && git pull origin main && .\sync-prompts.ps1
 ```
 
-The `sync-prompts.ps1` script copies all `*.prompt.md` and `*.agent.md` files from:
-- `copilot/skills/*/assets/` → `%APPDATA%\Code\User\prompts\`
-- `prompts/` → `%APPDATA%\Code\User\prompts\`
+Copies `*.prompt.md` and `*.agent.md` from `copilot/skills/*/assets/` and `prompts/` → `%APPDATA%\Code\User\prompts\`. When I say "sync prompts," just run it.
 
-### Switch to a repo
+### Session startup
 
 ```bash
-cd /c/github/<repo-name>
+git branch --show-current && git status --porcelain
+# If clean on main: git fetch upstream main && git pull upstream main && git push origin main
+# If on feature branch with changes: git stash first
 ```
 
-### Session startup (documentation work)
+### Branch naming
 
-1. `git branch --show-current` — check current branch
-2. `git status --porcelain` — check for uncommitted changes
-3. If on feature branch with changes → stash first
-4. `git checkout main && git fetch upstream main && git pull upstream main` — sync main
-5. `git push origin main` — push to fork
-
-### Create feature branch
-
-Branch naming: `mbender-ms/<service>-<brief-description>-<work-item-id>`
-
-```bash
-git checkout -b mbender-ms/load-balancer-health-probe-update-554937
-```
-
----
-
-## PR Description Framework
-
-Use the structure in [references/pr-framework.md](references/pr-framework.md) for all GitHub PR descriptions. The `generate_pr_description` MCP tool follows this framework, but agents should use the reference file as a fallback when the tool is unavailable.
-
-**Quick rules:**
-1. `AB#<id>` in PR body only — never in title or commits
-2. PR title — plain language, no AB# prefix
-3. Article intent section — always present, reader-perspective
-4. Files section — every changed file with path and annotation
-5. No filler — describe content value, not process
+`mbender-ms/<service>-<brief-description>-<work-item-id>`
 
 ---
 
 ## Conventions
 
-### Commit messages
+### Commits
 
 - Format: `docs: <imperative verb> <what changed>`
-- One commit per file
+- One commit per file — never batch multiple files
 - No AB# references in commits
-- Examples:
-  - `docs: Add health probe troubleshooting section`
-  - `docs: Update NAT Gateway outbound connectivity overview`
-  - `docs: Fix broken cross-reference links in load-balancer overview`
 
-### Work item titles
+### PR descriptions
 
-Format: `{Service} | {WorkflowType} | {Brief Description}`
+Load [references/pr-framework.md](references/pr-framework.md) when drafting PRs. Key rules: `AB#<id>` in body only (never title/commits), always include Article Intent + Files sections, no filler.
 
-Examples:
-- `Load Balancer | Maintenance | GitHub Issues & PR Review`
-- `Networking | New Feature | Secure network foundation article`
-- `NAT Gateway | Freshness | Update outbound connectivity guidance`
+### Work items
 
-### Tags
-
-Always include on work items: service tag, area tag (`Networking`), workflow type, and `cda`.
+- Title format: `{Service} | {WorkflowType} | {Brief Description}`
+- Tags: service tag, area tag (`Networking`), workflow type, `cda`
+- For full standards, delegate to the `ado-work-items` skill
 
 ---
 
-## Agent behavior notes
+## Agent Rules
 
-When agents work with me, they should:
-
-1. **Use MCP tools** for work items, git workflow context, PR descriptions, and completion calculations
-2. **Never commit to main** — always create a feature branch first
+1. **Delegate first** — Check [Task Routing](#task-routing--delegate-before-doing) before doing work inline
+2. **Never commit to main** — always create a feature branch
 3. **One commit per file** — never batch multiple files in a single commit
-4. **Ask before pushing** — always get approval before `git push`
-5. **Check the services table** to determine `ms.service`, repo path, and scope
-6. **Follow the PR description framework** above — don't invent custom formats
-7. **Use sentence casing** for all headings in documentation articles
-8. **Run sync-prompts.ps1** when I say "sync prompts" — no need to ask what I mean
+4. **Ask before pushing** — get approval before `git push`
+5. **Use MCP tools** for work items, git context, PR descriptions, and completion calculations
+6. **Sentence casing** for all headings in documentation articles
+7. **Lazy-load references** — don't read `pr-framework.md`, `repos.md`, or source YAMLs unless the task needs them
+8. **Efficiency over verbosity** — use direct commands and tools, don't over-explain. But never sacrifice research depth or clarity for brevity. When in doubt, ask rather than assume.
+
