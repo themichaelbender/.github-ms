@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "mcp-pdf": {
+      "command": "npx",
+      "args": ["-y", "mcp-pdf"]
+    }
+  }
+}
