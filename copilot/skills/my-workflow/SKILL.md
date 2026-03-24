@@ -42,6 +42,7 @@ Before processing a request inline, check whether a sibling skill or sub-agent s
 | SEO, metadata, editorial review | `documentor-workflow` skill | Invoke skill directly |
 | Codebase exploration or research | `Explore` agent | Spawn sub-agent with thoroughness level |
 | PR description generation | `generate_pr_description` MCP tool | Fall back to [references/pr-framework.md](references/pr-framework.md) |
+| Branch, commit, push, create PR | `git-workflow` prompt | Invoke prompt; uses `gh` CLI for PRs |
 | Complex multi-step workflows | Spawn sub-agents in parallel | See [Sub-agent patterns](#sub-agent-patterns) below |
 
 **Rule**: If a task maps to a row above, delegate it — don't re-implement the logic inline.
@@ -113,6 +114,16 @@ git branch --show-current && git status --porcelain
 ### Branch naming
 
 `mbender-ms/<service>-<brief-description>-<work-item-id>`
+
+### GitHub CLI shortcuts
+
+```bash
+gh pr create --fill              # Quick PR with auto-generated title/body
+gh pr view --web                 # Open current PR in browser
+gh pr list                       # List open PRs
+gh auth status                   # Check gh authentication
+gh pr merge --squash --delete-branch  # Merge + cleanup
+```
 
 ---
 
