@@ -30,13 +30,13 @@ Each category file aggregates repos across all 4 organizations. See [categories-
 | `general` | 1,118 | [general.yml](general.yml) |
 | `azure-general` | 343 | [azure-general.yml](azure-general.yml) |
 | `azure-compute` | 231 | [azure-compute.yml](azure-compute.yml) |
-| `developer-tools` | 214 | [developer-tools.yml](developer-tools.yml) |
+| `developer-tools` | 215 | [developer-tools.yml](developer-tools.yml) |
 | `azure-ai` | 212 | [azure-ai.yml](azure-ai.yml) |
-| `azure-iac` | 147 | [azure-iac.yml](azure-iac.yml) |
+| `azure-iac` | 148 | [azure-iac.yml](azure-iac.yml) |
 | `m365` | 102 | [m365.yml](m365.yml) |
 | `windows` | 99 | [windows.yml](windows.yml) |
 | `azure-data` | 80 | [azure-data.yml](azure-data.yml) |
-| **`azure-networking`** | **75** | [**azure-networking.yml**](azure-networking.yml) |
+| **`azure-networking`** | **73** | [**azure-networking.yml**](azure-networking.yml) |
 | `azure-devops` | 61 | [azure-devops.yml](azure-devops.yml) |
 | `dynamics` | 55 | [dynamics.yml](dynamics.yml) |
 | `azure-security` | 50 | [azure-security.yml](azure-security.yml) |
@@ -186,20 +186,20 @@ copilot/skills/sources/
 ├── microsoft.yml                ← microsoft org repos (1,000)
 ├── MicrosoftDocs.yml            ← MicrosoftDocs org repos (1,000)
 ├── MicrosoftCopilot.yml         ← MicrosoftCopilot org repos (0 active)
-├── azure-networking.yml         ← Cross-org: Azure Networking repos (75)
+├── azure-networking.yml         ← Cross-org: Azure Networking repos (73)
 ├── azure-ai.yml                 ← Cross-org: Azure AI repos (212)
 ├── azure-compute.yml            ← Cross-org: Azure Compute repos (231)
 ├── azure-data.yml               ← Cross-org: Azure Data repos (80)
 ├── azure-devops.yml             ← Cross-org: Azure DevOps repos (61)
 ├── azure-general.yml            ← Cross-org: Azure General repos (343)
-├── azure-iac.yml                ← Cross-org: Azure IaC repos (147)
+├── azure-iac.yml                ← Cross-org: Azure IaC repos (148)
 ├── azure-integration.yml        ← Cross-org: Azure Integration repos (17)
 ├── azure-messaging.yml          ← Cross-org: Azure Messaging repos (12)
 ├── azure-monitor.yml            ← Cross-org: Azure Monitor repos (34)
 ├── azure-security.yml           ← Cross-org: Azure Security repos (50)
 ├── azure-storage.yml            ← Cross-org: Azure Storage repos (12)
 ├── copilot.yml                  ← Cross-org: Copilot repos (43)
-├── developer-tools.yml          ← Cross-org: Developer Tools repos (214)
+├── developer-tools.yml          ← Cross-org: Developer Tools repos (215)
 ├── dynamics.yml                 ← Cross-org: Dynamics repos (55)
 ├── gaming.yml                   ← Cross-org: Gaming repos (13)
 ├── general.yml                  ← Cross-org: General/uncategorized repos (1,118)
