@@ -145,12 +145,6 @@ The slim agent is the default for Workflow 6 (Deep Agent). The CIA agent is used
 
 ---
 
-## Migration from previous skills
+## History
 
-This skill replaces both `fact-checker` and `microsoft-doc-verifier`. If you previously used either:
-
-1. Remove `~/.copilot/skills/fact-checker/` and `~/.copilot/skills/microsoft-doc-verifier/`
-2. Copy `doc-verifier/` to `~/.copilot/skills/`
-3. Restart VS Code
-
-All workflows from both previous skills are preserved with the same prompt assets.
+This skill consolidates the earlier `fact-checker` and `microsoft-doc-verifier` skills into a single unified tool. All workflows from both predecessors are preserved.
