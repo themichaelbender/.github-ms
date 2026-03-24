@@ -17,6 +17,7 @@ These instructions are loaded into **every** Copilot conversation automatically.
 5. **Sentence casing** for all headings in documentation articles.
 6. **Lazy-load** — don't pre-read reference files, source YAMLs, or repo catalogs unless the task requires them.
 7. **Efficiency over verbosity** — use direct commands and tools, but never sacrifice research depth or clarity. When in doubt, ask.
+8. **Git workflow** — For branch/commit/push/PR tasks, use the `git-workflow` prompt. Prefer `gh` CLI for PR creation.
 
 ## Skill Loading
 
