@@ -21,92 +21,61 @@ tools:
 
 # Complete Freshness Review
 
-Perform a full freshness review on the currently open article. This combines content freshness analysis with fact-checking against official Microsoft documentation, then makes all corrections directly in the file.
+Perform a full freshness review on the currently open article. Combines content freshness analysis with fact-checking, then makes all corrections directly in the file.
 
-## Authority Hierarchy
+## Setup
 
-Use sources in this priority order:
-1. **Tier 1 (Primary)**: learn.microsoft.com, azure.microsoft.com
-2. **Tier 2 (Secondary)**: techcommunity.microsoft.com, devblogs.microsoft.com, github.com/microsoft
-3. **Tier 3 (Cross-reference only)**: Stack Overflow, community blogs
+Load [_shared/source-hierarchy.md](../../_shared/source-hierarchy.md) for the complete tiered source authority reference. Higher tier always wins.
 
 ## Steps
 
 ### 1. Analyze the Article for Freshness Issues
+
 Read the current file and scan for:
-- **Outdated information**: dates, version numbers, deprecated features, retired services, old UI references, sunset announcements
-- **Broken or suspect links**: check absolute URLs by fetching them; flag any that return errors or redirect to retired pages
-- **ms.date**: note the current value — it will be updated to today's date after edits
-- **Metadata**: verify `ms.service`, `ms.topic`, `ms.author`, and other YAML front-matter fields are still valid
-- **Style**: flag obvious grammar, clarity, or formatting issues (passive voice, inconsistent headings, missing alt text)
+- **Outdated information**: dates, version numbers, deprecated features, retired services, old UI references
+- **Broken or suspect links**: fetch absolute URLs; flag errors or redirects
+- **ms.date**: note current value — will be updated after edits
+- **Metadata**: verify `ms.service`, `ms.topic`, `ms.author`, and other YAML fields
+- **Style**: flag obvious grammar, clarity, or formatting issues
 
 ### 2. Fact-Check Technical Claims
-Extract every technical claim from the article and verify each one:
-- Product/service names and descriptions
-- Feature capabilities, limitations, and prerequisites
-- Version numbers, API references, CLI commands
-- Configuration values, default settings, quotas
-- Code examples and syntax
 
-For each claim:
-- Search `microsoft_docs_search` for the topic on learn.microsoft.com
-- Use `microsoft_docs_fetch` to retrieve full documentation pages when needed
-- Use `microsoft_code_sample_search` for code examples
+Extract every technical claim and verify each one against the source hierarchy:
+- `microsoft_docs_search`, `microsoft_docs_fetch`, `microsoft_code_sample_search`
 - Check for deprecation notices or recent changes
 - Validate code examples using `get_errors`
 
-Classify each claim as:
-- **Accurate**: Matches current official documentation
-- **Partially Accurate**: Mostly correct but needs refinement
-- **Inaccurate**: Contradicted by official sources
-- **Outdated**: Was correct but no longer current
+Classify each claim: ✅ Accurate, ⚠️ Partially Accurate, ❌ Inaccurate, 🕐 Outdated.
 
 ### 3. Edit the File Directly
+
 For any inaccurate, outdated, or incomplete content:
 - Make corrections directly in the current file
 - Preserve the article's existing tone, style, and formatting
-- Update `ms.date` to today's date (MM/DD/YYYY format)
-- Fix broken links with current URLs
-- Update version numbers, CLI commands, and code samples to current versions
-- Correct any deprecated feature references with current alternatives
-- Fix grammar, clarity, and formatting issues found in Step 1
-- Do NOT add HTML comments or reference markers into the article — keep it clean
+- Update `ms.date` to today's date (MM/DD/YYYY)
+- Fix broken links, update version numbers, correct deprecated references
+- Do NOT add HTML comments or reference markers
 
 ### 4. Present a Summary in Chat
-After ALL edits are complete, present a single summary with this format for each change:
 
----
+For each change:
 
 **Edit N: [brief description]**
 - **Line(s)**: [approximate line number(s)]
 - **What changed**: [original text] → [new text]
 - **Why**: [brief explanation]
 - **Type**: [Outdated | Inaccurate | Broken Link | Style | Metadata]
-- **Source(s)**:
-  - [Title](learn.microsoft.com URL)
-  - [Title](secondary URL if used)
+- **Source(s)**: [Title](URL)
 
----
-
-End with:
-- Total number of edits made
-- Count by type (outdated, inaccurate, broken link, style, metadata)
-- A reminder that the user can review all changes using **Source Control** (Ctrl+Shift+G) or `git diff`
+End with totals by type and a reminder to review via Source Control or `git diff`.
 
 ### 5. Offer to Save Changes
-Ask if the user wants to save the changes. If yes:
-- Create a new branch (e.g., `freshness/article-name-MMDDYYYY`)
-- Commit the changes with a descriptive message
-- Push the branch
-- Open a pull request with a summary of the freshness review changes
 
-## Quality Checklist
-Before finishing, confirm:
-- [ ] All technical claims verified against Tier 1 sources
-- [ ] Every correction includes a source citation
-- [ ] Code examples validated
-- [ ] Version/deprecation status confirmed for mentioned services
-- [ ] Broken links fixed or flagged
-- [ ] `ms.date` updated to today's date
-- [ ] Article metadata reviewed
-- [ ] Style and formatting issues addressed
+Ask if the user wants to:
+- Create branch (`freshness/article-name-MMDDYYYY`)
+- Commit with descriptive message
+- Push and open a PR
+
+## Quality
+
+See [_shared/quality-checklist.md](../../_shared/quality-checklist.md) — verify both fact-check and editorial quality sections before finishing.

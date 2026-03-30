@@ -22,175 +22,84 @@ tools:
 
 # Complete Fact-Check (Internal)
 
-Fact-check the currently open article against **both public and internal** Microsoft resources. Verify every technical claim, provide evidence-based corrections, and generate a standalone report. Internal-sourced findings are isolated in a dedicated confidential section of the report to prevent accidental public disclosure.
+Fact-check the currently open article against **both public and internal** Microsoft resources. Internal-sourced findings are isolated in a dedicated confidential section to prevent accidental public disclosure.
 
-## Authority Hierarchy
+## Setup
 
-Use the tiered source hierarchy from SKILL.md: Tiers 1–3 (public) + Tiers 4–6 (internal: documentation, code, metadata).
+Load [_shared/source-hierarchy.md](../../_shared/source-hierarchy.md) for the complete tiered source authority reference (Tiers 1–3 public + Tiers 5–7 internal).
 
-> **Rule**: Internal sources (Tiers 4–6) must **never** be cited in public-facing documentation. Internal findings go in the **Internal Findings (Confidential)** report section and require author approval before applying.
+> **Rule**: Internal sources (Tiers 5–7) must **never** be cited in public-facing documentation. Internal findings go in the **Internal Findings (Confidential)** report section and require author approval before applying.
 
 ## Steps
 
 ### 1. Identify Claims
 
 Read the current file and extract every technical claim:
-
-- Product/service names and descriptions
-- Feature capabilities, limitations, and prerequisites
+- Product/service names, feature capabilities, limitations, prerequisites
 - Version numbers, API references, CLI/PowerShell commands
 - Configuration values, default settings, quotas and limits
 - Code examples and syntax
-- Pricing tiers, SKUs, and regional availability
+- Pricing tiers, SKUs, regional availability
 - Deprecation or preview/GA status
 
 For each claim, note the **WHAT** (assertion), **CONTEXT** (product/version), and **SCOPE** (applicability).
 
 ### 2. Verify Against Public Sources
 
-For each claim:
-
-- Search `microsoft_docs_search` for the topic on learn.microsoft.com
-- Use `microsoft_docs_fetch` to retrieve full documentation pages
-- Use `microsoft_code_sample_search` for code examples
-- Search the workspace with `semantic_search` and `grep_search` for related content
-- Use `web/githubRepo` to check Azure REST API specs (Azure/azure-rest-api-specs), Azure SDK repos, Azure PowerShell, and Azure CLI repositories for parameter names, defaults, and supported values
-- Use `web/fetch` to check TechCommunity and DevBlogs for recent announcements or changes
+For each claim, search in priority order per the source hierarchy:
+- `microsoft_docs_search` — learn.microsoft.com
+- `microsoft_docs_fetch` — full page retrieval
+- `microsoft_code_sample_search` — code examples
+- `web/githubRepo` — REST API specs, SDK repos, CLI repos
+- `web/fetch` — TechCommunity, DevBlogs
 - Check for deprecation notices or recent changes
 - Validate code examples using `get_errors`
-- Test executable examples using `run_in_terminal` when possible
 
 ### 3. Verify Against Internal Sources
 
-For claims that cannot be fully verified via public sources, or to catch discrepancies between public docs and actual implementation:
+For claims not fully verifiable via public sources:
+- **Internal documentation** — SharePoint sites, engineering wikis, design docs
+- **Internal codebases** — Product source code for default values, flags, error messages
+- **Internal product metadata** — Service Tree, Eco Manager for SKUs, API versions, limits
 
-- **Internal documentation portals & wikis**: Search internal SharePoint sites, engineering wikis, and design docs for deeper context on feature behavior, architecture, or unreleased changes that may affect accuracy.
-- **Internal codebases & configuration files**: Query product source code to confirm default values, flag names, error messages, and supported parameters. Documentation may lag behind code changes — the code is the ground truth (e.g., PowerShell/CLI documentation is generated from code comments in Azure/azure-powershell).
-- **Internal product metadata & catalogs**: Check internal product catalogs or metadata services for authoritative data on service names, SKU identifiers, API versions, limits, and regional availability.
-
-> **Important**: Tag every finding from internal sources with `[INTERNAL]` and record the internal source reference. These findings must be routed to the confidential section of the report.
+> Tag every internal finding with `[INTERNAL]` and record the source type.
 
 ### 4. Assess Accuracy
 
-For each verified claim, classify as:
-
-- **Accurate**: Matches current official documentation and internal implementation
-- **Partially Accurate**: Mostly correct but needs refinement
-- **Inaccurate**: Contradicted by official sources or internal implementation
-- **Outdated**: Was correct but no longer current
-- **Unverifiable (Public)**: Cannot be confirmed with public sources alone — flagged for internal review
+Classify each claim:
+- **✅ Accurate** — Matches current docs and internal implementation
+- **⚠️ Partially Accurate** — Needs refinement
+- **❌ Inaccurate** — Contradicted by official or internal sources
+- **🕐 Outdated** — Was correct but superseded
+- **❓ Unverifiable (Public)** — Cannot be confirmed with public sources alone
 
 ### 5. Make Corrections
 
-For any inaccurate or outdated content **confirmed by public sources**:
+**Public-source corrections**: Edit the file directly. Update `ms.date`.
 
-- Edit the file directly with the corrected information
-- Preserve the article's tone and style
-- Update `ms.date` to today's date
-- Cite only public sources in the article
-
-For issues found **only through internal sources**:
-
-- **Do NOT** edit the article automatically
-- Record the suggested correction in the Internal Findings section of the report
-- Flag for author review and approval before any changes are made
+**Internal-source corrections**: Do NOT auto-edit. Record in the Internal Findings section. Flag for author review.
 
 ### 6. Generate Report
 
-Create a fact-check report file named `factcheck_[articlename]_YYYYMMDD.md` containing:
+Create `factcheck_[articlename]_YYYYMMDD.md` with two clearly separated sections:
 
-````markdown
-# Fact-Check Report
+**Public Findings** — Per-issue: location, original, corrected, severity, source URL, source tier, status.
 
-**Date**: [today]
-**Article**: [file path]
-**Scope**: Public + Internal verification
-**Public Issues Found**: [count]
-**Internal Issues Found**: [count]
-**Critical Issues**: [count]
+**⛔ Internal Findings (Microsoft Confidential)** — Per-issue: location, original, suggested correction, severity, internal source type, rationale, whether a public source is available, status (Pending Author Review).
 
-## Executive Summary
-
-[Overview of findings, including a note on how many issues were identified through internal-only sources]
-
----
-
-## Public Findings
-
-Issues verified and correctable using publicly available sources.
-
-### Issue #N: [description]
-
-- **Location**: [file, line number, section]
-- **Original**: "[exact text]"
-- **Corrected**: "[replacement text]"
-- **Severity**: [Critical/High/Medium/Low]
-- **Type**: [Inaccurate/Outdated/Incomplete/Deprecated]
-- **Source**: [learn.microsoft.com or other public URL]
-- **Source Tier**: [Tier 1/Tier 2/Tier 3]
-- **Status**: [Corrected/Pending]
-
-### Public Summary Table
-
-| # | File | Line | Severity | Type | Source Tier | Status |
-|---|------|------|----------|------|-------------|--------|
-
----
-
-## ⛔ Internal Findings (Microsoft Confidential)
-
-> **WARNING**: This section contains information derived from internal Microsoft resources. Do NOT include this section in any public-facing document, pull request description, or external communication. Remove this section before sharing the report externally.
-
-Issues identified or validated through internal-only sources (Tiers 4–6). These require author review before corrections are applied.
-
-### Internal Issue #N: [description]
-
-- **Location**: [file, line number, section]
-- **Original**: "[exact text]"
-- **Suggested Correction**: "[proposed replacement text]"
-- **Severity**: [Critical/High/Medium/Low]
-- **Type**: [Inaccurate/Outdated/Incomplete/Deprecated/Unverifiable Publicly]
-- **Internal Source**: [description of internal source — e.g., "Product source code", "Internal wiki", "Service Tree metadata"]
-- **Rationale**: [Why the internal source contradicts or supplements the current text]
-- **Public Source Available**: [Yes/No — if Yes, list the public source that could be cited instead]
-- **Status**: Pending Author Review
-
-### Internal Summary Table
-
-| # | File | Line | Severity | Internal Source Type | Public Source Available | Status |
-|---|------|------|----------|---------------------|----------------------|--------|
-
----
-
-## Sources Used
-
-### Public Sources
-
-[All public URLs with access dates]
-
-### Internal Sources
-
-[Description of internal sources consulted — do NOT include direct links to internal systems in any externally shared version of this report]
-````
+> **WARNING**: Internal section must never appear in public docs, PR descriptions, or external communication.
 
 ### 7. Present Results
 
-Summarize:
+Summarize and ask if user wants to:
+1. Commit public-source corrections
+2. Review internal suggestions one by one
+3. Strip internal section for a public-safe report
 
-- Number of corrections made (from public sources)
-- Number of internal findings pending author review
-- Any claims that could not be verified by any source
+## Quality
 
-Ask if the user wants to:
-1. Commit the public-source corrections
-2. Review and approve internal-source suggestions one by one
-3. Strip the internal section and produce a public-safe version of the report
-
-## Quality Checklist
-
-See SKILL.md for the standard quality checklist. Additionally for this workflow:
-
+See [_shared/quality-checklist.md](../../_shared/quality-checklist.md). Additionally:
 - [ ] Internal sources consulted for claims not fully verifiable publicly
-- [ ] Internal findings isolated in the confidential report section
-- [ ] No internal source links or confidential details appear outside Internal Findings
+- [ ] Internal findings isolated in confidential report section
+- [ ] No internal source links appear outside Internal Findings
 - [ ] Author notified of pending internal-source suggestions
