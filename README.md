@@ -9,6 +9,7 @@ All skills live in `copilot/skills/` and are automatically available in VS Code 
 | Skill | Files | Size | Description |
 |-------|-------|------|-------------|
 | **ado-work-items** | 3 | 45 KB | Create and validate ADO work items per Azure Core Content Standards |
+| **article-integrity** | 3 | 20 KB | Audit article integrity for contradictions, naming issues, typos, and link text mismatches |
 | **azure-quickstart-templates** | 2 | 32 KB | Review, validate, or create Azure Quickstart Templates |
 | **doc-verifier** | 18 | 180 KB | Verify technical accuracy of Microsoft documentation (10 workflows, 3 agent variants) |
 | **doc-writer** | 5 | 65 KB | Scaffold and write Azure documentation articles (how-to, concept, quickstart, tutorial, overview) |
@@ -65,6 +66,7 @@ cd C:\github\.github && git pull origin main && .\sync-prompts.ps1
 ### March 2026 — Agent efficiency improvements
 
 **New skills:**
+- **article-integrity** — Focused two-phase article integrity analysis for contradictions, naming inconsistencies, obvious typos, and link text mismatches. Ignores frontmatter, reports evidence first, and waits for confirmation before applying edits.
 - **freshness-pass** — Full content freshness workflow combining fact-check (Phase A) + editorial review, SEO audit, markdown auto-fix, content suggestions, MS Style Guide checks (Phase B) + consolidation with git workflow (Phase C). Available as single-article and batch slash-commands.
 - **my-workflow** — Personal working context providing baseline identity, owned services, curated repo list, PR framework, task routing table, agent rules, and quick commands.
 
