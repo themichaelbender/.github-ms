@@ -93,14 +93,7 @@ Always prefer the highest available tier. See [_shared/source-hierarchy.md](../_
 
 ## Quality checklist
 
-- [ ] Every claim verified against at least one fetched source
-- [ ] Highest-tier source used per claim
-- [ ] URLs from allowed Microsoft domains only
-- [ ] `ms.date` updated if edits made
-- [ ] Code examples validated
-- [ ] Deprecation/retirement status checked
-- [ ] Unverifiable claims flagged, not removed
-- [ ] Internal findings isolated (if applicable)
+See [_shared/quality-checklist.md](../_shared/quality-checklist.md) for the complete checklist (fact-check, editorial, and batch sections).
 
 See [references/workflows.md](references/workflows.md) for detailed per-workflow procedures.
 
@@ -113,7 +106,7 @@ See [references/workflows.md](references/workflows.md) for detailed per-workflow
 | `assets/complete-fact-check.prompt.md` | 3 — Full Report |
 | `assets/complete-fact-checker-internal.prompt.md` | 4 — Internal + Public |
 | `assets/complete-freshness-review.prompt.md` | 5 — Freshness Review |
-| `assets/microsoft-fact-checker.agent.md` | 6 — Deep Agent |
+| `assets/microsoft-fact-checker-slim.agent.md` | 6 — Deep Agent |
 | `assets/batch-report.prompt.md` | 7 — Batch Report |
 | `assets/pr-review.prompt.md` | 8 — PR Review |
 | `assets/microsoft-researcher.prompt.md` | 9 — Research |
