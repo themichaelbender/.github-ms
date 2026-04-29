@@ -49,7 +49,7 @@ Tier 1 sources are the **ground truth**. If a lower-tier source contradicts Tier
 
 > **Rule**: Anonymous or non-Microsoft community responses must NOT be cited. Always verify the responder is a confirmed Microsoft employee.
 
-## Internal Sources (Workflows 3 and 6 Only)
+## Internal Sources (Workflows 4 and 9 only)
 
 ### Tier 5 — Internal Documentation
 

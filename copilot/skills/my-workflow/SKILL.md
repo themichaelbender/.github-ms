@@ -34,18 +34,7 @@ Personal working context for **Michael Bender** (`@mbender-ms`). Provides agents
 
 Before processing a request inline, check whether a sibling skill or sub-agent should handle it. **Delegation saves tokens and produces better results.**
 
-| Task pattern | Delegate to | How |
-|---|---|---|
-| Write/scaffold a new article | `doc-writer` skill | Invoke skill directly |
-| Fact-check or verify accuracy | `doc-verifier` skill or `microsoft-fact-checker` agent | Use agent for deep checks; skill for quick fixes |
-| Create/validate ADO work items | `ado-work-items` skill | Invoke skill directly |
-| SEO, metadata, editorial review | `documentor-workflow` skill | Invoke skill directly |
-| Codebase exploration or research | `Explore` agent | Spawn sub-agent with thoroughness level |
-| PR description generation | `generate_pr_description` MCP tool | Fall back to [references/pr-framework.md](references/pr-framework.md) |
-| Branch, commit, push, create PR | `git-workflow` prompt | Invoke prompt; uses `gh` CLI for PRs |
-| Complex multi-step workflows | Spawn sub-agents in parallel | See [Sub-agent patterns](#sub-agent-patterns) below |
-
-**Rule**: If a task maps to a row above, delegate it — don't re-implement the logic inline.
+See the task routing table in [copilot-instructions.md](../../../copilot-instructions.md) for the canonical routing rules. Do not re-implement the logic inline.
 
 ### Sub-agent patterns
 

@@ -142,7 +142,7 @@ Detailed procedures, outputs, and comparison for all ten doc-verifier workflows.
 
 ## Workflow 6: Deep Agent-Driven Check
 
-**Prompt**: `microsoft-fact-checker.agent.md` | **Mode**: Agent (extensive tool usage)
+**Prompt**: `microsoft-fact-checker-slim.agent.md` | **Mode**: Agent (extensive tool usage)
 
 ### When to use
 - Most thorough verification possible
